@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Budget 2025 Schemes | Ministry of Finance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="ministry.png" href="ministry.png">
+  <style>
+    .schemes-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .scheme-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-top: 40px;
+      align-items: stretch;
+    }
+
+    .scheme-card {
+      background: #fff;
+      border-radius: 14px 14px 0px 0px;
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.10);
+      border: 2px solid #f7cac9;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      height: 100%;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scheme-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(247, 202, 201, 0.1), rgba(0, 119, 182, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .scheme-card:hover {
+      box-shadow: 0 12px 36px #f77f0033;
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .scheme-card:hover::before {
+      opacity: 1;
+    }
+
+    .scheme-header {
+      font-size: 1.18rem;
+      font-weight: 700;
+      padding: 16px 22px;
+      color: #fff;
+      letter-spacing: 0.01em;
+      background: linear-gradient(90deg, #c1440e, #0077b6);
+      border-radius: 14px 14px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scheme-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .scheme-body {
+      display: flex;
+      padding: 22px 22px 18px 22px;
+      gap: 22px;
+      align-items: flex-start;
+      background: #fff;
+      flex-grow: 1;
+      position: relative;
+    }
+
+    .scheme-details {
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    .scheme-details h3 {
+      color: #0077b6;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .scheme-details h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #c1440e, #0077b6);
+      border-radius: 2px;
+    }
+
+    .scheme-details p {
+      color: #222;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 1.09em;
+    }
+
+    .scheme-highlight {
+      background: #f8f9fa;
+      padding: 15px;
+      border-left: 4px solid #c1440e;
+      margin: 15px 0;
+      border-radius: 0 8px 8px 0;
+      transition: all 0.3s ease;
+    }
+
+    .scheme-highlight:hover {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateX(5px);
+    }
+
+    .scheme-highlight ul {
+      margin: 0;
+      padding-left: 20px;
+      list-style: square inside;
+      font-size: 1.09em;
+      color: #222;
+      font-weight: 500;
+    }
+
+    .scheme-highlight li {
+      margin-bottom: 11px;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+
+    .scheme-highlight li:hover {
+      color: #c1440e;
+    }
+
+    .scheme-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .stat-item {
+      background: #fff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      font-size: 0.97em;
+      color: #0077b6;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .stat-item:hover {
+      border-color: #c1440e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(193, 68, 14, 0.1);
+    }
+
+    /* Add a decorative element */
+    .scheme-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at bottom right, rgba(247, 202, 201, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Add animation for stats */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat-item {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .stat-item:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    @media (max-width: 900px) {
+      .scheme-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .scheme-card {
+        min-height: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="header-top-left">
+        <span>भारत सरकार</span> | <span>GOVERNMENT OF INDIA</span>
+      </div>
+      <div class="header-top-right">
+        <a href="#main-content" class="skip-link">Skip to Main Content</a>
+        <span class="divider">|</span>
+        <img src="https://finmin.gov.in/sites/all/modules/customs/cmf_content/assets/images/ico-accessibility.png"
+          alt="Accessibility" class="icon">
+        <span class="divider">|</span>
+        <img src="https://vectorseek.com/wp-content/uploads/2023/09/Make-in-India-Logo-Vector.svg-.png"
+          alt="Swachh Bharat" class="swachh-logo">
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="header-main-left">
+        <img src="https://finmin.gov.in/sites/all/themes/cmf/images/emblem-dark.png" alt="National Emblem"
+          class="national-emblem">
+        <div>
+          <div class="ministry-title-hi">वित्त मंत्रालय</div>
+          <div class="ministry-title-en">MINISTRY OF <span>FINANCE</span></div>
+          <div class="ministry-sub">सत्यमेव जयते</div>
+        </div>
+      </div>
+      <div class="header-main-right">
+        <img src="https://tse3.mm.bing.net/th?id=OIP.AvrAle5yRzcbL_Jo-oSYDQHaEe&pid=Api&P=0&h=220" alt="Swachh Bharat"
+          class="swachh-logo-large">
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="schemes.html" class="active">Schemes</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="schemes-container">
+    <h1 style="text-align: center; color: #c1440e; margin-bottom: 40px;">Budget 2025-26: New Government Schemes</h1>
+
+    <div class="scheme-grid">
+      <!-- Agriculture Schemes -->
+      <div class="scheme-card">
+        <div class="scheme-header">Prime Minister Dhan-Dhaanya Krishi Yojana</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Agriculture Development Programme</h3>
+            <div class="scheme-highlight">
+              <strong>Key Focus Areas:</strong>
+              <ul>
+                <li>Crop diversification and sustainable practices</li>
+                <li>Post-harvest storage facilities</li>
+                <li>Enhanced irrigation infrastructure</li>
+                <li>Agricultural credit availability</li>
+              </ul>
+            </div>
+            <div class="scheme-stats">
+              <span class="stat-item">Coverage: 100 districts</span>
+              <span class="stat-item">Beneficiaries: 1.7 crore farmers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rural Development -->
+      <div class="scheme-card">
+        <div class="scheme-header">Rural Prosperity and Resilience Programme</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Rural Development Initiative</h3>
+            <div class="scheme-highlight">
+              <strong>Core Components:</strong>
+              <ul>
+                <li>Skilling programs</li>
+                <li>Investment and technology support</li>
+                <li>Rural employment opportunities</li>
+                <li>Migration reduction initiatives</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manufacturing -->
+      <div class="scheme-card">
+        <div class="scheme-header">National Manufacturing Mission</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Make in India Initiative</h3>
+            <div class="scheme-highlight">
+              <strong>Key Sectors:</strong>
+              <ul>
+                <li>Clean tech</li>
+                <li>Solar PV cells</li>
+                <li>EV batteries</li>
+                <li>Wind turbines</li>
+                <li>Electrolyzers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Security -->
+      <div class="scheme-card">
+        <div class="scheme-header">Social Security Scheme for Gig Workers</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Gig Economy Support</h3>
+            <div class="scheme-highlight">
+              <strong>Benefits:</strong>
+              <ul>
+                <li>Health insurance through PM Jan Arogya Yojana</li>
+                <li>Identity cards</li>
+                <li>e-Shram portal registration</li>
+              </ul>
+            </div>
+            <div class="scheme-stats">
+              <span class="stat-item">Target: 1 crore workers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infrastructure -->
+      <div class="scheme-card">
+        <div class="scheme-header">Urban Challenge Fund</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Urban Development Initiative</h3>
+            <div class="scheme-highlight">
+              <strong>Key Features:</strong>
+              <ul>
+                <li>Corpus: ₹1 lakh crore</li>
+                <li>Urban infrastructure development</li>
+                <li>Sanitation projects</li>
+                <li>City revitalization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Energy -->
+      <div class="scheme-card">
+        <div class="scheme-header">Nuclear Energy Mission for Viksit Bharat</div>
+        <div class="scheme-body">
+          <div class="scheme-details">
+            <h3>Energy Development</h3>
+            <div class="scheme-highlight">
+              <strong>Investment:</strong>
+              <ul>
+                <li>R&D Investment: ₹20,000 crore</li>
+                <li>Small modular reactors (SMRs)</li>
+                <li>Clean energy development</li>
+              </ul>
+            </div>
+            <div class="scheme-stats">
+              <span class="stat-item">Target: 100 GW by 2047</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <ul class="footer-links">
+        <li><a href="https://finmin.gov.in/website-policies.html">Website Policies</a></li>
+        <li><a href="https://finmin.gov.in/help.html">Help</a></li>
+        <li><a href="https://finmin.gov.in/contact-us.html">Contact Us</a></li>
+        <li><a href="https://finmin.gov.in/feedback.html">Feedback</a></li>
+        <li><a href="https://finmin.gov.in/visitor-analytics.html">Visitor's Summary</a></li>
+        <li><a href="https://finmin.gov.in/web-information-manager.html">Web Information Manager</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-logo">
+        <a href="https://www.nic.in/">
+          <img src="https://finmin.gov.in/sites/all/modules/customs/cmf_content/assets/images/cmf-logo.png"
+            alt="NIC Logo" style="height:32px;">
+        </a>
+      </div>
+      <div class="footer-text">
+        Website Content Managed by <strong>Ministry of Finance, Government of India</strong><br>
+        Designed, Developed and Hosted by <a href="https://www.nic.in/"><strong>National Informatics Centre
+            (NIC)</strong></a><br>
+        <span class="lastupdated">Last Updated: <strong>09 May 2025</strong></span>
+      </div>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

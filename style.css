@@ -1,0 +1,529 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+  color: #1a1a1a;
+  height: 100%;
+}
+
+
+/* Header */
+.header-top {
+  background: linear-gradient(90deg, #f7cac9 0%, #92a8d1 100%);
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+  font-size: 1.08em;
+}
+
+.header-top-left {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.header-top-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-top .icon {
+  height: 18px;
+  vertical-align: middle;
+}
+
+.header-top .swachh-logo {
+  height: 26px;
+  vertical-align: middle;
+}
+
+.divider {
+  color: #c1440e;
+  margin: 0 8px;
+}
+
+.skip-link {
+  color: #c1440e;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.header-main {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 4px solid #c1440e;
+  padding: 18px 32px 12px 32px;
+}
+
+.header-main-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.national-emblem {
+  height: 62px;
+  margin-right: 10px;
+}
+
+.ministry-title-hi {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #00796b;
+  font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+}
+
+.ministry-title-en {
+  font-size: 2em;
+  font-weight: bold;
+  color: #c1440e;
+  letter-spacing: 0.5px;
+}
+
+.ministry-title-en span {
+  color: #0077b6;
+}
+
+.ministry-sub {
+  font-size: 1.05em;
+  color: #f77f00;
+  margin-top: 2px;
+}
+
+.header-main-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.swachh-logo-large {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  /* transition: transform 0.3s ease; */
+}
+
+
+/* Navigation */
+.main-nav {
+  background: linear-gradient(90deg, #c1440e 0%, #0077b6 100%);
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.7em;
+  margin: 0;
+  padding: 0 32px;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 13px 22px;
+  display: block;
+  font-size: 1.13em;
+  border-radius: 4px 4px 0 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+  background: #f77f00;
+  color: #222;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(90deg, #fff3e6 0%, #f7cac9 100%);
+  text-align: center;
+  padding: 30px 0 24px 0;
+  border-bottom: 1px solid #f3d6b1;
+}
+
+.banner-img {
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0077b633;
+}
+
+.banner-caption {
+  font-size: 1.45em;
+  color: #00796b;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+.bannerX {
+  background: linear-gradient(90deg, #f7cac9 0%, #92a8d1 100%);
+  text-align: center;
+  padding: 30px 0 24px 0;
+  border-bottom: 1px solid #f3d6b1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-imgX {
+  max-width: 1200px;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0077b633;
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 0% center;
+  background-image: url("https://www.indiabudget.gov.in/images/banner_anthem.jpg");
+  animation: gallery 300s ease-in-out infinite;
+}
+
+@keyframes gallery {
+  0% {
+    background-position: 0% center;
+    background-image: url("https://www.indiabudget.gov.in/images/banner_anthem.jpg");
+  }
+  20% {
+    background-position: 100% center;
+  }
+  25% {
+    background-position: 0% center;
+    background-image: url("https://assetmonk.com/wp-content/uploads/image-4-1.png");
+  }
+  45% {
+    background-position: 100% center;
+  }
+  50% {
+    background-position: 0% center;
+    background-image: url("https://imgs.search.brave.com/f8x6wZXTUtaDwcfuNVTwEKfhYBblRXXQrYVKW62NdPM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25iY3R2MTguY29t/L3N0YXRpYy9pbWFn/ZXMvYnVkZ2V0MjAy/NS9idWRnZXQ2Lmpw/Zz9pbXBvbGljeT13/ZWJzaXRlJndpZHRo/PTYyMCZoZWlnaHQ9/MzQx");
+  }
+  70% {
+    background-position: 100% center;
+  }
+  75% {
+    background-position: 0% center;
+    background-image: url("https://imgs.search.brave.com/lSigzVWkFjoErlbnLOpD6W9YkD-WpfzQELDkS5A2A9A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25iY3R2MTguY29t/L3N0YXRpYy9pbWFn/ZXMvYnVkZ2V0MjAy/NS9idWRnZXQxLmpw/Zz9pbXBvbGljeT13/ZWJzaXRlJndpZHRo/PTYyMCZoZWlnaHQ9/MzQx");
+  }
+  95% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+    background-image: url("https://imgs.search.brave.com/8byYoMgfneuGZO7tpp8HNETpk8CmKUxpTcKAZWjNxAY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y25iY3R2MTguY29t/L3N0YXRpYy9pbWFn/ZXMvYnVkZ2V0MjAy/NS9idWRnZXQ0Lmpw/Zz9pbXBvbGljeT13/ZWJzaXRlJndpZHRo/PTYyMCZoZWlnaHQ9/MzQx");
+  }
+}
+
+.banner-captionX {
+  font-size: 1.45em;
+  color: #00796b;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+/* Departments Grid */
+.container {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px 40px 20px;
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 14px;
+  gap: 36px;
+  align-items: stretch;
+}
+
+.dept-card {
+  background: #fff;
+  border-radius: 14px 14px 0px 0px;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.10);
+  border: 2px solid #f7cac9;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 100%;
+  min-height: 320px;
+}
+
+.dept-card:hover {
+  box-shadow: 0 12px 36px #f77f0033;
+  transform: translateY(-4px) scale(1.01);
+}
+
+.dept-header {
+  font-size: 1.18rem;
+  font-weight: 700;
+  padding: 16px 22px;
+  color: #fff;
+  letter-spacing: 0.01em;
+  border-radius: 14px 14px 0 0;
+}
+
+.dept-expenditure .dept-header {
+  background: linear-gradient(90deg, #ed4a05, #ffb347);
+}
+
+.dept-economic .dept-header {
+  background: linear-gradient(90deg, #0077b6, #43aa8b);
+}
+
+.dept-revenue .dept-header {
+  background: linear-gradient(90deg, #43aa8b, #f77f00);
+}
+
+.dept-financial .dept-header {
+  background: linear-gradient(90deg, #f77f00, #6a4c93);
+}
+
+.dept-investment .dept-header {
+  background: linear-gradient(90deg, #6a4c93, #0077b6);
+}
+
+.dept-public .dept-header {
+  background: linear-gradient(90deg, #d62828, #f7cac9);
+}
+
+.dept-body {
+  display: flex;
+  padding: 22px 22px 18px 22px;
+  gap: 22px;
+  align-items: flex-start;
+  background: #fff;
+  flex-grow: 1;
+}
+
+.dept-body img {
+  width: 110px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0077b622;
+  border: 1.5px solid #f2efe8;
+  background: #f3f3f3;
+  flex-shrink: 0;
+}
+
+.dept-body ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: square inside;
+  font-size: 1.09em;
+  color: #222;
+  font-weight: 500;
+}
+
+.dept-body li {
+  margin-bottom: 11px;
+  line-height: 1.6;
+}
+
+.dept-body a {
+  color: #0077b6;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+  font-size: 1.07em;
+}
+
+.dept-body a:hover {
+  color: #c1440e;
+  text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+  background: linear-gradient(90deg, #f7cac9 0%, #92a8d1 100%);
+  border-top: 4px solid #c1440e;
+  margin-top: 48px;
+  box-shadow: 0 -2px 16px #c1440e22;
+  font-size: 1em;
+}
+
+.footer-top {
+  background: #fff;
+  padding: 28px 0 14px 0;
+  border-bottom: 1px solid #f1e0d6;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links a {
+  color: #fff;
+  background: linear-gradient(90deg, #c1440e, #0077b6);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 7px 18px;
+  border-radius: 18px;
+  font-size: 1em;
+  box-shadow: 0 2px 8px #c1440e33;
+  display: inline-block;
+  border: 1px solid transparent;
+  /* Prevents jump/flicker on hover */
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.footer-links a:hover {
+  background: #fff;
+  color: #c1440e;
+  box-shadow: 0 4px 16px #0077b633;
+  border: 1px solid #c1440e;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 0 12px 0;
+  background: transparent;
+}
+
+.footer-logo img {
+  height: 32px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 6px #c1440e22);
+}
+
+.footer-text {
+  text-align: center;
+  color: #c1440e;
+  font-size: 1.04em;
+  margin-bottom: 0;
+  background: #fff7f0;
+  padding: 16px 26px 10px 26px;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px #0077b622;
+}
+
+.footer-text a {
+  color: #0077b6;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.footer-text a:hover {
+  color: #c1440e;
+}
+
+.lastupdated {
+  display: block;
+  margin-top: 6px;
+  color: #478356;
+  font-size: 0.97em;
+}
+
+/* Ensure main content fills the viewport to keep footer stable */
+main.container {
+  min-height: calc(100vh - 370px);
+  /* Adjust 370px to match your header+footer height */
+}
+
+@media (max-width: 900px) {
+
+  .header-main,
+  .main-nav ul,
+  .header-top {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .header-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-main-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .main-nav ul {
+    gap: 0.7em;
+    font-size: 0.97em;
+    padding: 0 8px;
+  }
+
+  .departments-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .dept-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .dept-card {
+    min-height: 0;
+  }
+
+  .dept-body img {
+    margin-bottom: 8px;
+  }
+
+
+
+  .footer-links {
+    gap: 0.7em;
+    font-size: 0.97em;
+  }
+
+  .footer-text {
+    font-size: 0.97em;
+    padding: 12px 10px 8px 10px;
+  }
+
+  .header-main-right {
+    padding: 5px;
+  }
+  
+  .swachh-logo-large {
+    height: 45px;
+  }
+}
+
+@media (max-width: 600px) {
+  .swachh-logo-large {
+    height: 35px;
+  }
+}

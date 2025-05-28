@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard - Ministry of Finance, Government of India</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="ministry.png" href="ministry.png">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-section {
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+            padding: 0 24px 40px 24px;
+        }
+
+        .dashboard-summary-row {
+            display: flex;
+            gap: 28px;
+            justify-content: space-between;
+            margin-bottom: 36px;
+        }
+
+        .dashboard-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+            width: 32%;
+            padding: 24px 18px 18px 18px;
+            text-align: center;
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.18em;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        .dashboard-card p {
+            font-size: 1.6em;
+            color: #2ecc71;
+            margin: 0 0 8px 0;
+        }
+
+        .dashboard-card span {
+            font-size: 1em;
+            color: #95a5a6;
+        }
+
+        .dashboard-charts-row {
+            display: flex;
+            gap: 32px;
+            justify-content: space-between;
+        }
+
+        .dashboard-chart-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+            width: 48%;
+            padding: 24px 18px 18px 18px;
+        }
+
+        .dashboard-chart-card h3 {
+            font-size: 1.13em;
+            color: #34495e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .update-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .update-btn:hover {
+            background-color: #2980b9;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 320px !important;
+        }
+
+        @media (max-width: 1100px) {
+
+            .dashboard-summary-row,
+            .dashboard-charts-row {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .dashboard-card,
+            .dashboard-chart-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-left">
+                <span>भारत सरकार</span> | <span>GOVERNMENT OF INDIA</span>
+            </div>
+            <div class="header-top-right">
+                <a href="#main-content" class="skip-link">Skip to Main Content</a>
+                <span class="divider">|</span>
+                <img src="https://finmin.gov.in/sites/all/modules/customs/cmf_content/assets/images/ico-accessibility.png"
+                    alt="Accessibility" class="icon">
+                <span class="divider">|</span>
+                <img src="https://vectorseek.com/wp-content/uploads/2023/09/Make-in-India-Logo-Vector.svg-.png" alt="Swachh Bharat"
+                    class="swachh-logo">
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="header-main-left">
+                <img src="https://finmin.gov.in/sites/all/themes/cmf/images/emblem-dark.png" alt="National Emblem"
+                    class="national-emblem">
+                <div>
+                    <div class="ministry-title-hi">वित्त मंत्रालय</div>
+                    <div class="ministry-title-en">MINISTRY OF <span>FINANCE</span></div>
+                    <div class="ministry-sub">सत्यमेव जयते</div>
+                </div>
+            </div>
+            <div class="header-main-right">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.AvrAle5yRzcbL_Jo-oSYDQHaEe&pid=Api&P=0&h=220" alt="Swachh Bharat"
+                    class="swachh-logo-large">
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="schemes.html">schemes</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard-section" id="main-content">
+        <div class="dashboard-summary-row">
+            <div class="dashboard-card">
+                <h3>Total Budget for FY 2024-25</h3>
+                <p>₹<span id="totalBudget">39,44,650 Crore</span></p>
+                <span>Total allocated budget for India’s fiscal year 2024-25</span>
+            </div>
+            <div class="dashboard-card">
+                <h3>Total Expenditure (Current Year)</h3>
+                <p>₹<span id="totalExpenditure">23,50,000 Crore</span></p>
+                <span>Expenditure made so far in FY 2024-25</span>
+            </div>
+            <div class="dashboard-card">
+                <h3>Remaining Budget</h3>
+                <p>₹<span id="remainingBudget">15,94,650 Crore</span></p>
+                <span>Remaining funds for the rest of the year</span>
+            </div>
+        </div>
+        <div class="dashboard-charts-row">
+            <div class="dashboard-chart-card">
+                <h3>Budget Allocation Across Sectors</h3>
+                <canvas id="budgetAllocationChart"></canvas>
+                <button class="update-btn" onclick="updateBudgetData()">Update Data</button>
+            </div>
+            <div class="dashboard-chart-card">
+                <h3>Spending vs Budget</h3>
+                <canvas id="spendingVsBudgetChart"></canvas>
+                <button class="update-btn" onclick="updateSpendingData()">Update Data</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <ul class="footer-links">
+                <li><a href="https://finmin.gov.in/website-policies.html">Website Policies</a></li>
+                <li><a href="https://finmin.gov.in/help.html">Help</a></li>
+                <li><a href="https://finmin.gov.in/contact-us.html">Contact Us</a></li>
+                <li><a href="https://finmin.gov.in/feedback.html">Feedback</a></li>
+                <li><a href="https://finmin.gov.in/visitor-analytics.html">Visitor's Summary</a></li>
+                <li><a href="https://finmin.gov.in/web-information-manager.html">Web Information
+                        Manager</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">
+                <a href="https://www.nic.in/" target="_blank" rel="noopener">
+                    <img src="https://finmin.gov.in/sites/all/modules/customs/cmf_content/assets/images/cmf-logo.png"
+                        alt="NIC Logo" style="height:32px;">
+                </a>
+            </div>
+            <div class="footer-text">
+                Website Content Managed by <strong>Ministry of Finance, Government of India</strong><br>
+                Designed, Developed and Hosted by <a href="https://www.nic.in/" target="_blank"
+                    rel="noopener"><strong>National Informatics Centre (NIC)</strong></a><br>
+                <span class="lastupdated">Last Updated: <strong>09 May 2025</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Budget Allocation (Pie Chart)
+        const budgetAllocationData = {
+            labels: ['Defence', 'Education', 'Healthcare', 'Infrastructure', 'Agriculture', 'Others'],
+            datasets: [{
+                data: [20, 15, 10, 30, 5, 20],
+                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#f39c12', '#8e44ad', '#95a5a6'],
+                hoverBackgroundColor: ['#2980b9', '#27ae60', '#c0392b', '#f1c40f', '#9b59b6', '#7f8c8d']
+            }]
+        };
+        const budgetAllocationCtx = document.getElementById('budgetAllocationChart').getContext('2d');
+        const budgetAllocationChart = new Chart(budgetAllocationCtx, {
+            type: 'pie',
+            data: budgetAllocationData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { enabled: true }
+                }
+            }
+        });
+
+        // Spending vs Budget (Bar Chart)
+        const spendingVsBudgetData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Budget Allocation (₹ Crore)',
+                data: [100000, 120000, 110000, 95000, 98000, 105000],
+                backgroundColor: '#3498db',
+                borderColor: '#2980b9',
+                borderWidth: 1
+            }, {
+                label: 'Actual Spending (₹ Crore)',
+                data: [85000, 100000, 95000, 90000, 97000, 103000],
+                backgroundColor: '#2ecc71',
+                borderColor: '#27ae60',
+                borderWidth: 1
+            }]
+        };
+        const spendingVsBudgetCtx = document.getElementById('spendingVsBudgetChart').getContext('2d');
+        const spendingVsBudgetChart = new Chart(spendingVsBudgetCtx, {
+            type: 'bar',
+            data: spendingVsBudgetData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { enabled: true }
+                },
+                scales: { x: { beginAtZero: true } }
+            }
+        });
+
+        // Update functions for demo (simulate new data)
+        function updateBudgetData() {
+            document.getElementById('totalBudget').textContent = (Math.floor(Math.random() * 4000000) + 2000000).toLocaleString() + " Crore";
+            document.getElementById('totalExpenditure').textContent = (Math.floor(Math.random() * 3000000) + 1000000).toLocaleString() + " Crore";
+            document.getElementById('remainingBudget').textContent = (Math.floor(Math.random() * 1500000) + 500000).toLocaleString() + " Crore";
+            alert("Budget data updated!");
+        }
+        function updateSpendingData() {
+            spendingVsBudgetChart.data.datasets.forEach(ds => {
+                ds.data = ds.data.map(() => Math.floor(Math.random() * 120000) + 80000);
+            });
+            spendingVsBudgetChart.update();
+            alert("Spending vs Budget chart data updated!");
+        }
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
